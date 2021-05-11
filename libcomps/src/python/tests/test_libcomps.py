@@ -77,6 +77,29 @@ class TestLibcomps(unittest.TestCase):
                                                  "uservisible_explicit":True})
         self.assertEqual(data, expected_data_1)
 
+    def test_empty_packagelist(self):
+        self.comps = libcomps.Comps()
+        group = libcomps.Group()
+        group.id = "core"
+        self.comps.groups.append(group)
+
+        data = self.comps.xml_str(xml_options = {"empty_groups":True,
+                                                 "default_explicit":True,
+                                                 "empty_packages":True,
+                                                 "uservisible_explicit":True})
+        expected_data_1 = """<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE comps PUBLIC "-//Red Hat, Inc.//DTD Comps info//EN" "comps.dtd">
+<comps>
+  <group>
+    <id>core</id>
+    <default>false</default>
+    <uservisible>true</uservisible>
+    <packagelist/>
+  </group>
+</comps>
+"""
+        self.assertEqual(data, expected_data_1)
+
     def test_add_package(self):
         package = libcomps.Package()
         package.name = "kernel"
