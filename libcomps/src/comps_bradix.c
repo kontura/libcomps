@@ -20,6 +20,8 @@
 #include "comps_bradix.h"
 #include <stdio.h>
 
+// test
+
 void comps_brtree_data_destroy(COMPS_BRTreeData * rtd) {
     rtd->key_destroy(rtd->key);
         if (rtd->data_destructor && rtd->data)
